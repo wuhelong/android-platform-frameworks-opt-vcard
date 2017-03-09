@@ -548,10 +548,19 @@ public class VCardImporterTests extends VCardTestsBase {
     }
 
     /**
-     * Tests all the properties in a complicated vCard are correctly parsed by the VCardParser.
+     * Tests all the properties in a complicated vCard are correctly parsed by the VCardParser for
+     * both v2.1 and v3.0 cards.
      */
     public void testV21ComplicatedCase_Parsing() {
-        mVerifier.initForImportTest(V21, R.raw.v21_complicated);
+        testComplicatedCase_Parsing(V21, R.raw.v21_complicated);
+    }
+
+    public void testV30ComplicatedCase_Parsing() {
+        testComplicatedCase_Parsing(V30, R.raw.v30_complicated);
+    }
+
+    public void testComplicatedCase_Parsing(int vcardType, int resId) {
+        mVerifier.initForImportTest(vcardType, resId);
         mVerifier.addPropertyNodesVerifierElem()
                 .addExpectedNodeWithOrder("N", "Gump;Forrest;Hoge;Pos;Tao",
                         Arrays.asList("Gump", "Forrest", "Hoge", "Pos", "Tao"))
@@ -607,7 +616,14 @@ public class VCardImporterTests extends VCardTestsBase {
      * into ContentResolver.
      */
     public void testV21ComplicatedCase() {
-        mVerifier.initForImportTest(V21, R.raw.v21_complicated);
+        testComplicatedCase(V21, R.raw.v21_complicated);
+    }
+
+    public void testV30ComplicatedCase() {
+        testComplicatedCase(V30, R.raw.v30_complicated);
+    }
+    public void testComplicatedCase(int vcardType, int resId) {
+        mVerifier.initForImportTest(vcardType, resId);
         ContentValuesVerifierElem elem = mVerifier.addContentValuesVerifierElem();
         elem.addExpected(StructuredName.CONTENT_ITEM_TYPE)
                 .put(StructuredName.FAMILY_NAME, "Gump")
