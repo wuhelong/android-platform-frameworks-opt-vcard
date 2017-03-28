@@ -573,6 +573,7 @@ public class VCardImporterTests extends VCardTestsBase {
                 .addExpectedNodeWithOrder("X-CLASS", "PUBLIC")
                 .addExpectedNodeWithOrder("TEL", "(111) 555-1212", new TypeSet("WORK", "VOICE"))
                 .addExpectedNodeWithOrder("TEL", "(404) 555-1212", new TypeSet("HOME", "VOICE"))
+                .addExpectedNodeWithOrder("TEL", "(404) 555-1212P*#55", new TypeSet("FAX"))
                 .addExpectedNodeWithOrder("TEL", "0311111111", new TypeSet("CELL"))
                 .addExpectedNodeWithOrder("TEL", "0322222222", new TypeSet("VIDEO"))
                 .addExpectedNodeWithOrder("TEL", "0333333333", new TypeSet("VOICE"))
@@ -644,6 +645,9 @@ public class VCardImporterTests extends VCardTestsBase {
         elem.addExpected(Phone.CONTENT_ITEM_TYPE)
                 .put(Phone.TYPE, Phone.TYPE_HOME)
                 .put(Phone.NUMBER, "404-555-1212");
+        elem.addExpected(Phone.CONTENT_ITEM_TYPE)
+                .put(Phone.TYPE, Phone.TYPE_FAX_HOME)
+                .put(Phone.NUMBER, "4045551212,*#55");
         elem.addExpected(Phone.CONTENT_ITEM_TYPE)
                 .put(Phone.TYPE, Phone.TYPE_MOBILE)
                 .put(Phone.NUMBER, "031-111-1111");
