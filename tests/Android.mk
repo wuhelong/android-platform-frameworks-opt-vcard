@@ -21,8 +21,8 @@ LOCAL_PACKAGE_NAME := AndroidVCardTests
 LOCAL_PRIVATE_PLATFORM_APIS := true
 LOCAL_COMPATIBILITY_SUITE := device-tests
 LOCAL_SRC_FILES := $(call all-java-files-under, src)
-LOCAL_JAVA_LIBRARIES := android.test.runner
-LOCAL_STATIC_JAVA_LIBRARIES := com.android.vcard junit legacy-android-test
+LOCAL_JAVA_LIBRARIES := android.test.runner android.test.base android.test.mock
+LOCAL_STATIC_JAVA_LIBRARIES := com.android.vcard junit
 
 LOCAL_JACK_COVERAGE_INCLUDE_FILTER := com.android.vcard.*
 LOCAL_JACK_COVERAGE_EXCLUDE_FILTER := com.android.vcard.tests.*
